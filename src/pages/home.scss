@@ -8,18 +8,33 @@
   color: white;
   font-size: px(16);
   > header {
+    margin: 0 auto;
+    width: px(2420);
     height: px(102);
     background-size: cover;
+  }
+  > footer {
+    height: px(68);
+    border: 1px solid #0d2d59;
+    margin: px(20) 0 1px;
+    border-radius: 4px;
+    background: #0c0d2b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   > main {
     flex: 1;
     display: grid;
+    margin: 0 auto;
+    width: px(2420);
     grid-template:
       "box1 box2 box4 box5" 755fr
       "box3 box3 box4 box5" 363fr / 366fr 361fr 811fr 747fr;
     grid-column-gap: px(28);
     grid-row-gap: px(28);
     padding: px(30);
+    padding-bottom: 0;
     > section {
       text-align: center;
     }
