@@ -10,7 +10,7 @@
     const clientHeight = document.documentElement.clientHeight;
     const screenScale = clientWidth / clientHeight
     const scale = 16 / 9
-    let pageWidth = screenScale > scale ? clientHeight * scale : clientWidth;
+    window.pageWidth = screenScale > scale ? clientHeight * scale : clientWidth;
     const pageHeight = pageWidth / scale
     const string = `<style>html {
       font-size: ${pageWidth / 100}px
