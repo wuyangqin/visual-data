@@ -85,6 +85,9 @@
     > .section2 {
       grid-area: box2;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     > .section3 {
       grid-area: box3;
@@ -95,10 +98,14 @@
     > .section5 {
       grid-area: box5;
     }
-    .管辖统计, .破获排名, .发案趋势 {
+    .管辖统计, .破获排名, .发案趋势, .案发时段 {
       height: px(315);
       display: flex;
       flex-direction: column;
+      align-items: center;
+    }
+    .发案趋势, .案发时段 {
+      height: px(363);
     }
     .管辖统计 {
       height: px(315);
