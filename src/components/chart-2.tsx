@@ -1,14 +1,39 @@
 import React, {useEffect, useRef} from 'react';
 import * as echarts from 'echarts';
-import {px} from '../shared/px';
-import {baseEchartOptions} from '../shared/base-echart-options';
 import {createEchartsOptions} from '../shared/create-echarts-options';
 
 export const Chart2 = () => {
     const divRef = useRef(null);
+    const myChart = useRef(null)
+    const data = [
+        {name: '岳麓区公安局', 2016: 2, 2017: 3},
+        {name: '芙蓉区公安局', 2016: 2, 2017: 3},
+        {name: '天心区公安局', 2016: 2, 2017: 3},
+        {name: '雨花区公安局', 2016: 2, 2017: 3},
+        {name: '开福区公安局', 2016: 2, 2017: 3},
+        {name: '望城区公安局', 2016: 2, 2017: 3},
+        {name: '长沙县公安局', 2016: 2, 2017: 3},
+        {name: '宁乡市公安局', 2016: 2, 2017: 3},
+        {name: '浏阳市公安局', 2016: 2, 2017: 3},
+    ];
     useEffect(() => {
-        let myChart = echarts.init(divRef.current);
-        myChart.setOption(createEchartsOptions({
+        setInterval(() => {
+            const newData = [
+                {name: '岳麓区公安局', 2016: 2, 2017: Math.random() * 10},
+                {name: '芙蓉区公安局', 2016: 2, 2017: 3},
+                {name: '天心区公安局', 2016: 2, 2017: 3},
+                {name: '雨花区公安局', 2016: 2, 2017: 3},
+                {name: '开福区公安局', 2016: 2, 2017: 3},
+                {name: '望城区公安局', 2016: 2, 2017: 3},
+                {name: '长沙县公安局', 2016: 2, 2017: 3},
+                {name: '宁乡市公安局', 2016: 2, 2017: 3},
+                {name: '浏阳市公安局', 2016: 2, 2017: 3},
+            ];
+            x(newData);
+        }, 1000);
+    }, []);
+    const x = (data) => {
+        myChart.current.setOption(createEchartsOptions({
             xAxis: {
                 type: 'value',
                 boundaryGap: [0, 0.01],
@@ -17,8 +42,7 @@ export const Chart2 = () => {
             },
             yAxis: {
                 type: 'category',
-                data: ['岳麓区公安局', '芙蓉区公安局', '天心区公安局', '雨花区公安局', '开福区公安局',
-                    '望城区公安局', '长沙县公安局', '宁乡市公安局', '浏阳市公安局'],
+                data: data.map(i => i.name),
                 axisLabel: {
                     formatter(val) {
                         return val.replace('公安局', '\n公安局');
@@ -29,7 +53,7 @@ export const Chart2 = () => {
                 {
                     name: '2016年',
                     type: 'bar',
-                    data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                    data: data.map(i => i[2016]),
                     itemStyle: {
                         normal: {
                             color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
@@ -45,7 +69,7 @@ export const Chart2 = () => {
                 {
                     name: '2017年',
                     type: 'bar',
-                    data: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+                    data: data.map(i => i[2017]),
                     itemStyle: {
                         normal: {
                             color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
@@ -60,6 +84,10 @@ export const Chart2 = () => {
                 }
             ]
         }));
+    };
+    useEffect(() => {
+        myChart.current = echarts.init(divRef.current);
+        x(data);
     }, []);
 
     return (
