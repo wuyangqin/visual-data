@@ -27,6 +27,7 @@ export const Chart12 = () => {
                 left: 'left',
                 top: 'center',
                 textStyle: {color: 'white'},
+                itemGap:px(15),
                 itemWidth: px(10),
                 itemHeight: px(10),
                 formatter(name) {
