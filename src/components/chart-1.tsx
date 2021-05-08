@@ -3,13 +3,41 @@ import * as echarts from 'echarts';
 import {px} from '../shared/px';
 import {baseEchartOptions} from '../shared/base-echart-options';
 import {createEchartsOptions} from '../shared/create-echarts-options';
+
 export const Chart1 = () => {
     const divRef = useRef(null);
+    const myChart = useRef(null)
+    const data = [
+        {name: '岳麓区', 2016: 10},
+        {name: '芙蓉区', 2016: 20},
+        {name: '天心区', 2016: 36},
+        {name: '雨花区', 2016: 41},
+        {name: '开福区', 2016: 15},
+        {name: '望城区', 2016: 28},
+        {name: '长沙县', 2016: 37,},
+        {name: '宁乡市', 2016: 18},
+        {name: '浏阳市', 2016: 19},
+    ];
     useEffect(() => {
-        let myChart = echarts.init(divRef.current);
-        myChart.setOption(createEchartsOptions({
+        setInterval(() => {
+            const newData = [
+                {name: '岳麓区', 2016: Math.random() * 30},
+                {name: '芙蓉区', 2016: 20},
+                {name: '天心区', 2016: 36},
+                {name: '雨花区', 2016: 41},
+                {name: '开福区', 2016: 15},
+                {name: '望城区', 2016: 28},
+                {name: '长沙县', 2016: 37,},
+                {name: '宁乡市', 2016: 18},
+                {name: '浏阳市', 2016: 19},
+            ];
+            x(newData);
+        }, 1500);
+    }, []);
+    const x = (data) => {
+        myChart.current.setOption(createEchartsOptions({
             xAxis: {
-                data: ['芙蓉新区', '芙蓉新区', '芙蓉新区', '芙蓉新区', '芙蓉新区', '芙蓉新区', '芙蓉新区', '芙蓉新区', '芙蓉新区'],
+                data: data.map(i => i.name),
                 axisTick: {show: false},
                 axisLine: {
                     lineStyle: {color: '#083B70'}
@@ -35,9 +63,13 @@ export const Chart1 = () => {
             },
             series: [{
                 type: 'bar',
-                data: [10, 20, 36, 41, 15, 26, 37, 18, 29]
+                data: data.map(i => i[2016] + Math.random() * 10)
             }]
         }));
+    };
+    useEffect(() => {
+        myChart.current = echarts.init(divRef.current);
+        x(data);
     }, []);
 
     return (

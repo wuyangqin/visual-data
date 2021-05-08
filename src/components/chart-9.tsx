@@ -5,9 +5,19 @@ import {px} from '../shared/px';
 
 export const Chart9 = () => {
     const divRef = useRef(null);
+    const myChart = useRef(null)
+    const data = [
+        0.19, 0.20, 0.26,
+        0.35, 0.26, 0.20,
+        0.08, 0.06
+    ]
     useEffect(() => {
-        let myChart = echarts.init(divRef.current);
-        myChart.setOption(createEchartsOptions({
+        setInterval(() => {
+            x(data);
+        }, 1500);
+    }, []);
+    const x = (data) => {
+        myChart.current.setOption(createEchartsOptions({
             color: '#F7A110',
             xAxis: {
                 type: 'category',
@@ -28,11 +38,7 @@ export const Chart9 = () => {
             },
             series: [{
                 type: 'line',
-                data: [
-                    0.19, 0.20, 0.26,
-                    0.35, 0.26, 0.20,
-                    0.08, 0.06
-                ],
+                data: data.map(i => i + Math.random() * .1),
                 symbol: 'circle',
                 symbolSize: px(12),
                 lineStyle: {width: px(2)},
@@ -47,6 +53,10 @@ export const Chart9 = () => {
                 }
             }]
         }));
+    }
+    useEffect(() => {
+        myChart.current = echarts.init(divRef.current);
+        x(data);
     }, []);
 
     return (

@@ -15,9 +15,15 @@ export const Chart13 = () => {
         {value: 0.08, name: '砂子塘'},
         {value: 0.08, name: '侯家塘'}
     ];
+    const myChart = useRef(null)
+
     useEffect(() => {
-        let myChart = echarts.init(divRef.current);
-        myChart.setOption(createEchartsOptions({
+        setInterval(() => {
+            x(data);
+        }, 1500);
+    }, []);
+    const x = (data) => {
+        myChart.current.setOption(createEchartsOptions({
             xAxis: {
                 data: data.map(i => i.name),
                 axisTick: {show: false},
@@ -51,7 +57,7 @@ export const Chart13 = () => {
             },
             series: [{
                 type: 'bar',
-                data: data.map(i => i.value),
+                data: data.map(i => i.value + Math.random() * .1),
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                     offset: 0,
                     color: '#0A97FB'
@@ -61,6 +67,10 @@ export const Chart13 = () => {
                 }]),
             }]
         }));
+    };
+    useEffect(() => {
+        myChart.current = echarts.init(divRef.current);
+        x(data);
     }, []);
 
     return (
