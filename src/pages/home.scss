@@ -22,6 +22,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    opacity: .9;
   }
   > main {
     flex: 1;
@@ -51,6 +53,7 @@
         right: 0;
         bottom: 0;
         top: 0;
+        pointer-events: none;
         border-radius: 4px;
         box-shadow: 17px 0 0 -16px #0e325f,
         -17px 0 0 -16px #0e325f,
@@ -62,6 +65,7 @@
         0 -9px 0 -8px #0d4483,;
       }
       h2 {
+        margin-top: -1px;
         flex-shrink: 0;
         border: 1px solid #0a5299;
         border-bottom-left-radius: 4px;
@@ -150,10 +154,11 @@
         }
       }
     }
-    .战果 {
-      padding:0  px(20);
+    .战果, .作案手段 {
+      padding:0  px(24);
       > table {
-        margin-top: px(38);
+        margin-top: px(25);
+        width: 100%; table-layout: fixed;
         border-collapse: collapse;
         th, td {
           border: 1px solid #1a3671;
@@ -170,6 +175,15 @@
             background: #1c2456;
           }
 
+        }
+      }
+    }
+    .作案手段 {
+      > table {
+        tbody {
+          td {
+            height: px(26);
+          }
         }
       }
     }
